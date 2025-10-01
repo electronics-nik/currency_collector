@@ -1,0 +1,6 @@
+"id","bank_id","url","module_name","class_name","create_time","update_time"
+3,3,https://kyt-obmin.od.ua/,kit_group,KitGroupCollector,2025-08-16 16:32:23.782,2025-10-01 19:07:21.839
+5,5,https://minfin.com.ua/ua/currency/banks/odessa/,min_fin,MinFineCollector,2025-08-16 16:32:23.784,2025-10-01 19:07:21.844
+2,2,https://raiffeisen.ua/,raiffeisen_bank_aval,RaiffeisenBankAvalCollector,2025-08-16 16:32:23.781,2025-10-01 19:08:30.710
+1,1,https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5,privat_bank,PrivatBankCollector,2025-08-16 16:32:23.773,2025-10-01 19:10:46.563
+4,4,https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json,national_bank_of_ukraine,NationalBankOfUkraineCollector,2025-08-16 16:32:23.783,2025-10-01 19:14:18.194

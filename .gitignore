@@ -1,0 +1,11 @@
+.idea/
+.venv/
+grafana/
+logs/
+postgres/
+redis/
+
+.env
+docker-compose.yml.bkp
+
+__pycache__/

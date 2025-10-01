@@ -1,0 +1,4 @@
+"id","currency_code","bank_currency_name","international_currency_name","is_active","create_time","update_time"
+2,840,USD,USD,true,2025-08-16 16:55:37.280,2025-08-16 16:55:37.280
+3,978,EUR,EUR,true,2025-08-16 16:55:37.286,2025-08-16 16:55:37.286
+4,980,UAH,UAH,false,2025-08-16 16:55:37.287,2025-08-16 16:55:37.287
