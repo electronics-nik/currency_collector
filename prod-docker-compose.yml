@@ -1,0 +1,35 @@
+name: collector
+services:
+  worker:
+    image: nkiseev/collector
+    platform: linux/amd64
+    container_name: worker
+    command: celery -A celery_app worker --loglevel=info
+    environment:
+      - C_FORCE_ROOT=true
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - HOST=${HOST}
+      - PORT=${PORT}
+    networks:
+      - currency_collector_net
+
+  beat:
+    image: nkiseev/collector
+    platform: linux/amd64
+    container_name: scheduler
+    command: celery -A celery_app beat --loglevel=info
+    environment:
+      - C_FORCE_ROOT=true
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - HOST=${HOST}
+      - PORT=${PORT}
+    networks:
+      - currency_collector_net
+
+networks:
+  currency_collector_net:
+    external: true

@@ -12,13 +12,14 @@ app = Celery(
 @app.task
 def collector():
     go_collect()
-    print("🔥 Задача выполнена!")
+    print("🔥 Task is done!")
 
 app.conf.beat_schedule = {
-    "run-collector-job-every-1-minute": {
+    "run-collector-job": {
         "task": "celery_app.collector",
         # "schedule": crontab(hour="*/3"),  # каждые три часа
-        "schedule": crontab(minute="*/1"),  # каждую минуту
+        # "schedule": crontab(minute="*/1"),  # каждую минуту
+        "schedule": crontab(hour='6,12,18', minute=0),
     },
 }
 app.conf.timezone = "UTC"
