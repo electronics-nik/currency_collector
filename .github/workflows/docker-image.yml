@@ -28,14 +28,14 @@ jobs:
       - name: Determine Docker tags
         id: docker_tags
         run: |
-          TAGS="latest,${GITHUB_SHA::7}"  # short SHA для краткости
+          TAGS="${{ secrets.DOCKERHUB_USERNAME }}/collector:latest\n${{ secrets.DOCKERHUB_USERNAME }}/collector:${GITHUB_SHA::7}"
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            TAGS="${TAGS},${GITHUB_REF#refs/tags/}"
+            TAGS="$TAGS\n${{ secrets.DOCKERHUB_USERNAME }}/collector:${GITHUB_REF#refs/tags/}"
           fi
-          echo "TAGS=$TAGS" >> $GITHUB_ENV
-
+          echo -e "TAGS<<EOF\n$TAGS\nEOF" >> $GITHUB_ENV
+      
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/collector:${{ env.TAGS }}
+          tags: ${{ env.TAGS }}
