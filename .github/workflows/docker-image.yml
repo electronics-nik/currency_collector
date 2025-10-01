@@ -3,7 +3,7 @@ name: Build and Push Docker image
 on:
   push:
     branches:
-      - main
+      - master
     tags:
       - 'v*'
   workflow_dispatch:
@@ -38,4 +38,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${{ env.TAGS }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/collector:${{ env.TAGS }}
