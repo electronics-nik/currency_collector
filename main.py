@@ -35,7 +35,8 @@ def go_collect():
                  ba.class_name
             from bank as b
             join bank_api as ba on b.id = ba.bank_id
-           where b.is_active;
+           where b.is_active
+           order by b.id;
           '''
     for bank_id, bank_name, bank_url_api, m_name, c_name in conn.select(sql):
         print(bank_id, bank_name, m_name, c_name)

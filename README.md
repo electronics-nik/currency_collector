@@ -240,6 +240,54 @@ volumes:
 3. В самой задаче используем `logger.info(...)`, вместо `print()`. Так удобно отлавливать ошибки 
 и видеть точное время выполнения.
 
+### Развёртывание
+1. Загружаем все `docker-compose` файлы на сервер;
+```shell
+
+```
+
+2. Устанавливаем [`Portainer`](https://docs.portainer.io/start/install-ce/server/docker/linux)
+```shell
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts
+```
+
+3. Создаём Docker сеть
+```shell
+docker network create currency_collector_net
+```
+и проверяем её
+```shell
+docker network inspect currency_collector_net
+```
+4. Запускаем `Redis`
+```shell
+cd redis
+docker compose up -d
+```
+
+5. Запускаем `PstgreSQL`
+```shell
+cd postgres
+docker compose up -d
+```
+
+6. Открываем порт в AWS
+7. Подключаемся клиентом и инициализируем базу
+8. Запускаем приложение
+```shell
+docker compose -f prod-docker-compose.yml up -d
+```
+9. Проверяем что все контейнера подключились к сети
+```shell
+docker network inspect currency_collector_net
+```
+
+10. Запускаем `Grafana`
+```shell
+cd grafana
+doucer compose up -d
+```
+
 
 
 git remote add origin git@github.com:electronics-nik/currency_collector.git
